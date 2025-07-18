@@ -5,8 +5,12 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 
 df = pd.read_csv('train.csv')
-X = df.drop('Survived', axis=1)
-y = df['Survived']
 
-model = xgb.XGBClassifier()
+target_col = "Survived"
+feature_cols = ["Pclass", "Sex", "Age", "SibSp", "Parch", "Fare", "Embarked"]
+
+X = df.drop(target_col, axis=1)
+y = df[feature_cols]
+
+model = xgb.XGBClassifier(use_label_encoder=False, eval_metric='logloss')
 model.fit(X, y)
