@@ -9,8 +9,8 @@ df = pd.read_csv('train.csv')
 target_col = "Survived"
 feature_cols = ["Pclass", "Sex", "Age", "SibSp", "Parch", "Fare", "Embarked"]
 
-X = df.drop(target_col, axis=1)
+x = df.drop(target_col, axis=1)
 y = df[feature_cols]
 
 model = xgb.XGBClassifier(use_label_encoder=False, eval_metric='logloss')
-model.fit(X, y)
+model.fit(x, y)
